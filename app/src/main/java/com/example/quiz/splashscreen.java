@@ -26,53 +26,26 @@ public class splashscreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splashscreen);
-        validarMainActivity()
+        validarMainActivity();
 
 
     }
 
     private void validarMainActivity() {
 
-        usuario = getApplicationContext().getSharedPreferences(dataUserCache,modo_private).getString("user","0");
+        String usuario = getApplicationContext().getSharedPreferences("dataUserCache", Context.MODE_PRIVATE).getString("user", "0");
+
 
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (usuario.equalsIgnoreCase("0")){
+                if (usuario.equalsIgnoreCase("0")) {
+
                     Intent i = new Intent(splashscreen.this, MainActivity.class);
                     startActivity(i);
-                }else if{
 
-                    if (seleccion.equals("Cine")) {
-                        editor.putString("user",edt_nombre.getText().toString());
-                        editor.commit();
-                        editor.putString("user",edt_edad.getText().toString());
-                        editor.commit();
-
-                        Intent i = new Intent(MainActivity.this, cine.class);
-                        startActivity(i);
-
-
-                    } else if (seleccion.equals("Musica")) {
-                        editor.putString("user",edt_nombre.getText().toString());
-                        editor.commit();
-                        editor.putString("user",edt_edad.getText().toString());
-                        editor.commit();
-                        Intent i = new Intent(MainActivity.this, musica.class);
-                        startActivity(i);
-
-                    } else if (seleccion.equals("Deportes")) {
-                        editor.putString("user",edt_nombre.getText().toString());
-                        editor.commit();
-                        editor.putString("user",edt_edad.getText().toString());
-                        editor.commit();
-                        Intent i = new Intent(MainActivity.this, deporte.class);
-                        startActivity(i);
-
-                    }
-                }
                 }
             }
-        };
+        }, 2000);
     }
-}
+
